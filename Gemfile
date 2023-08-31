@@ -27,6 +27,8 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem "cssbundling-rails"
+
 gem "sorcery", "~> 0.16.4"
 
 gem "tailwindcss-rails", "~> 2.0"
