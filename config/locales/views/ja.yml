@@ -1,0 +1,52 @@
+ja:
+  defaults:
+    service_name: '華遊台湾'
+    register: '会員登録'
+    login: 'ログイン'
+    logout: 'ログアウト'
+    profile: 'プロフィール'
+    category: '問題カテゴリー'
+    bookmark: 'マイ単語帳'
+    pronounce: '発音練習'
+    review: '復習モード'
+    terms: '利用規約'
+    privacy: 'プライバシーポリシー'
+    contact: 'お問い合わせ'
+    message:
+      require_login: 'ログインしてください'
+      not_authorized: '権限がありません'
+  users:
+    new:
+      create_an_account: 'アカウントを作成'
+      already_have_an_account: '既にアカウントをお持ちですか？'
+      to_login: 'ログインはこちら'
+      agree: 'に同意します'
+  user_sessions: 
+    new:
+      forgot_password: 'パスワードをお忘れですか？'
+      not_have_account: 'アカウントをお持ちではないですか？'
+      login_to: 'アカウントにログイン'
+      to_sign_up: '登録はこちら'
+    create:
+      success: 'ログインに成功しました'
+      failure: 'ログインに失敗しました'
+    destroy:
+      success: 'ログアウトしました'
+  categories:
+    index:
+      start_course: "学習を開始する"
+    show:
+      quiz_results: "過去のテスト結果"
+      take_quiz: "練習問題にチャレンジ"
+  questions:
+    show:
+      submit: "回答する"
+  results:
+    show:
+      go_back: "戻る"
+  profiles:
+    show:
+      edit: "編集"
+      delete: "削除"
+    edit:
+      update: "更新する"
