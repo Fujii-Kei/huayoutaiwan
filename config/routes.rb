@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'categories/index'
+  get 'categories/show'
   root 'top_pages#top'
   get 'terms', to: 'top_pages#terms'
   get 'privacy_policy', to: 'top_pages#privacy'
