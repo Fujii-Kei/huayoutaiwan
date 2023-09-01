@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_31_155149) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_01_112826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_155149) do
     t.index ["category_id"], name: "index_questions_on_category_id"
   end
 
+  create_table "results", force: :cascade do |t|
+    t.integer "score", null: false
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_results_on_category_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
+  end
+
+  create_table "user_answers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "answer_id", null: false
+    t.bigint "result_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_user_answers_on_answer_id"
+    t.index ["result_id"], name: "index_user_answers_on_result_id"
+    t.index ["user_id"], name: "index_user_answers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -53,4 +74,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_155149) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "categories"
+  add_foreign_key "results", "categories"
+  add_foreign_key "results", "users"
+  add_foreign_key "user_answers", "answers"
+  add_foreign_key "user_answers", "results"
+  add_foreign_key "user_answers", "users"
 end
