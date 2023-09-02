@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'results/create'
-  get 'results/index'
-  get 'results/show'
   root 'top_pages#top'
   get 'terms', to: 'top_pages#terms'
   get 'privacy_policy', to: 'top_pages#privacy'
@@ -18,7 +15,7 @@ Rails.application.routes.draw do
   end
   resources :bookmarks, only: %i[index]
   namespace :admin do
-    root 'dashboards#index'
+    root 'base#top'
     get 'login', to: 'user_sessions#new', as: 'login'
     post 'login', to: 'user_sessions#create'
     delete 'logout', to: 'user_sessions#destroy', as: 'logout'
