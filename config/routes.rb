@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'results/create'
+  get 'results/index'
+  get 'results/show'
   root 'top_pages#top'
   get 'terms', to: 'top_pages#terms'
   get 'privacy_policy', to: 'top_pages#privacy'
