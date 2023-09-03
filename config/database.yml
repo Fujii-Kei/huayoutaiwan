@@ -81,6 +81,8 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: huayoutaiwan_production
   username: huayoutaiwan
   password: <%= ENV["HUAYOUTAIWAN_DATABASE_PASSWORD"] %>
