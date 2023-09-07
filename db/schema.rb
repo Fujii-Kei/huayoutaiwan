@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_02_163937) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_07_161325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_163937) do
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "question_audio"
     t.index ["category_id"], name: "index_questions_on_category_id"
   end
 
@@ -61,10 +62,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_02_163937) do
 
   create_table "user_answers", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "answer_id", null: false
     t.bigint "result_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "answer_id", null: false
     t.index ["answer_id"], name: "index_user_answers_on_answer_id"
     t.index ["result_id"], name: "index_user_answers_on_result_id"
     t.index ["user_id"], name: "index_user_answers_on_user_id"
