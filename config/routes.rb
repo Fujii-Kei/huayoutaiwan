@@ -19,8 +19,8 @@ Rails.application.routes.draw do
     get 'login', to: 'user_sessions#new', as: 'login'
     post 'login', to: 'user_sessions#create'
     delete 'logout', to: 'user_sessions#destroy', as: 'logout'
-    resources :users
-    resources :categories
-    resources :questions
+    resources :users, except: %i[show]
+    resources :categories, except: %i[show]
+    resources :questions, except: %i[show]
   end  
 end
