@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'profiles/edit'
-  get 'profiles/update'
   root 'top_pages#top'
   get 'terms', to: 'top_pages#terms'
   get 'privacy_policy', to: 'top_pages#privacy'
