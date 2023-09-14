@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   enum role: { general: 0, admin: 1 }
 
+  mount_uploader :avatar, AvatarUploader
+
   def bookmark(question)
     bookmark_questions << question
   end
