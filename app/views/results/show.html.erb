@@ -10,7 +10,9 @@
           
       <%= "問題#{question_number + 1}."%>
       <%= content_tag :span, question.body, class: "text-base font-normal" %>
-      <%= render 'bookmark_button', question: question %>
+      <turbo-frame id="bookmark-button-for-question-<%= question.id %>">
+        <%= render "bookmark_button", question: question %>
+      </turbo-frame>
       </div>
       <%= question.title %>
       <% question.answers.each do |answer| %>
