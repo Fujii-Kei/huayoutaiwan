@@ -1,14 +1,16 @@
 <div class="m-4">
+  <div class="text-3xl font-bold text-center">正しい日本語訳を選びましょう</div>
   <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
     <%= form_with url: category_question_results_path, method: :post do |f| %>
       <% @questions.each_with_index do |question, question_number| %>
         <div class="text-3xl font-bold">
-          <%= "問題#{question_number + 1}."%> <%= content_tag :span, question.body, class: "text-base font-normal" %>
+          <%= "問題#{question_number + 1}."%> <%= content_tag :span, question.title %>
         </div> 
-        <%= question.title %>
+        <br>
         <% if question.question_audio? %>
           <%= audio_tag question.question_audio.url, controls: true %>
         <% end %>
+        <br>
         <% question.answers.each do |answer| %>
           <div class="flex items-center mb-4">
             <%= f.radio_button :"answers[#{question.id}][id]", answer.id %>
