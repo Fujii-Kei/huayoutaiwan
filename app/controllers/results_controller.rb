@@ -15,7 +15,6 @@ class ResultsController < ApplicationController
       score: score
     )
     set_user_answer(answers)
-    binding.break
     # ユーザーの回答を保存する
     if @user_answer.save
       # 保存に成功した場合は、ビューに遷移する
