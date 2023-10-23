@@ -1,8 +1,29 @@
-<div>
-  <h1><%= "ブックマークした表現はこちらに追加されます"%></h1>
-  <% @bookmarks.each do |bookmark| %>
-  <%= bookmark.question.title %>
-  <%= bookmark.question.answers.find_by(is_correct: true).body %>
-  <br>
-  <% end %>
+<div class="m-4">
+  <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+    <h1>ブックマークした表現はこちらに追加されます</h1>
+    <table class="table-auto">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">カテゴリー</th>
+          <th class="px-4 py-2">中国語</th>
+          <th class="px-4 py-2">発音</th>
+          <th class="px-4 py-2">日本語</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookmarks.each do |bookmark| %>
+          <tr>
+            <td class="border px-4 py-2"><%= bookmark.question.category.name %></td>
+            <td class="border px-4 py-2"><%= bookmark.question.title %></td>
+            <td class="border px-4 py-2">
+              <% if bookmark.question.question_audio? %>
+                <%= audio_tag bookmark.question.question_audio.url, controls: true %>
+              <% end %>
+            </td>
+            <td class="border px-4 py-2"><%= bookmark.question.answers.find_by(is_correct: true).body %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
