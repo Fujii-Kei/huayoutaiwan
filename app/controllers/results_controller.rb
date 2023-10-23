@@ -1,6 +1,14 @@
 class ResultsController < ApplicationController
   def create
     # クイズ結果を保存する
+    answers = params[:answers]
+    @category = Category.find(params[:category_id])
+    @questions = @category.questions.order(:id)
+    if answers.nil? || answers.to_unsafe_h.size != @questions.count
+      flash.now[:alert] = '全ての問題に回答してください。'
+      render 'questions/show', status: :unprocessable_entity
+      return
+    end
     @result = current_user.results.create(
       category_id: params[:category_id],
       score: calculate_score
@@ -34,20 +42,17 @@ class ResultsController < ApplicationController
     params.require(:result).permit(:score, :category_id)
   end
   
-  def calculate_score
+  def calculate_score(answers)
     # クイズの正解数を計算する
     score = 0
-    answers = params[:answers]
     answers.each do |question_id, answer_hash|
       answer_id = answer_hash[:id]
       score += 1 if Answer.find(answer_id).is_correct?
     end
-    score
   end
 
-  def set_user_answer
+  def set_user_answer(answers)
     # ユーザーの回答を保存する
-    answers = params[:answers]
     answers.each do |question_id, answer_hash|
       answer_id = answer_hash[:id]
       @user_answer = current_user.user_answers.create(
