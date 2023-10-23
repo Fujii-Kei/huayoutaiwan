@@ -9,12 +9,14 @@ class ResultsController < ApplicationController
       render 'questions/show', status: :unprocessable_entity
       return
     end
+    score = calculate_score(answers)
     @result = current_user.results.create(
       category_id: params[:category_id],
-      score: calculate_score
+      score: score
     )
+    set_user_answer(answers)
+    binding.break
     # ユーザーの回答を保存する
-    set_user_answer
     if @user_answer.save
       # 保存に成功した場合は、ビューに遷移する
       redirect_to category_question_result_path(category_id: @result.category_id, id: @result.id), notice: 'クイズ結果を保存しました。'
@@ -49,6 +51,7 @@ class ResultsController < ApplicationController
       answer_id = answer_hash[:id]
       score += 1 if Answer.find(answer_id).is_correct?
     end
+    score
   end
 
   def set_user_answer(answers)
