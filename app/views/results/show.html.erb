@@ -4,7 +4,7 @@
 </h1>
 <div class="m-4">
   <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-    <% @result.category.questions.each_with_index do |question, question_number| %>
+    <% @result.category.questions.order(:id).each_with_index do |question, question_number| %>
       <div class="text-3xl font-bold">
         <% ua = @result.user_answers.find_by(answer_id: question.answers.pluck(:id)) %>
           
