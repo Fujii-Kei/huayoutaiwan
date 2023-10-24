@@ -3,6 +3,7 @@
   <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
     <%= form_with url: category_question_results_path, method: :post do |f| %>
       <% @questions.each_with_index do |question, question_number| %>
+        <br>
         <div class="text-3xl font-bold">
           <%= "問題#{question_number + 1}."%> <%= content_tag :span, question.title %>
         </div> 
